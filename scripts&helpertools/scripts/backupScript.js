@@ -1,7 +1,5 @@
-const { Module } = require("module");
-
 /** Return string 2022-06-13-06-23-19, used for labeling files, etc. */
-const getCurrentDateTime = () => {
+export const getCurrentDateTime = () => {
     var now = new Date();
     var year = now.getFullYear();
     var month = now.getMonth() + 1;
@@ -32,8 +30,6 @@ const getCurrentDateTime = () => {
 * Adds a suffix to the end of a filename so that it has a timestamp, used for backup or log files, etc.
     index.html.backup-2022-06-13-06-23-19
 */
-const timeStampifyFileName = (filename, idCode='backup') => {
+export const timeStampifyFileName = (filename, idCode='backup') => {
     return `${filename}.${idCode}-${getCurrentDateTime()}`;
 }
-
-module.exports = {getCurrentDateTime, timeStampifyFileName}
