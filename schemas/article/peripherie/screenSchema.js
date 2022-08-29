@@ -54,3 +54,4 @@ export const screenSchema = mongoose.Schema({
         warranty: schemaSettings.string,
     },
 })
+export const ArticleScreenModel = mongoose.model('screenCol', screenSchema)

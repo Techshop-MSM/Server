@@ -1,4 +1,4 @@
-import { mongoose } from 'mongoose'
+import mongoose from 'mongoose'
 
 const reqString = {
     type: String,
@@ -22,10 +22,6 @@ const array = {
     type: Array,
 }
 
-const file = {
-    type: File,
-}
-
 const bool = {
     type: Boolean,
 }
@@ -36,8 +32,13 @@ const userSchema = mongoose.Schema({
     username: reqString,
     password: reqString,
     group: string,
+    status: {
+        type: string,
+        enum: ['pending', 'active'],
+        default: 'pending',
+    },
     order: {
-        invoice: file,
+        invoice: array,
         articles: array,
     },
     sex: string,

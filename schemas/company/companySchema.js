@@ -1,5 +1,5 @@
-import { mongoose } from 'mongoose'
-import { schemaSettings } from '../article/basicData&Settings/schemaSettings'
+import mongoose from 'mongoose'
+import { schemaSettings } from '../basicData&Settings/schemaSettings'
 
 export const companySchema = mongoose.Schema({
     company: {

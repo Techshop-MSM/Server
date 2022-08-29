@@ -1,4 +1,4 @@
-import { mongoose } from 'mongoose'
+import mongoose from 'mongoose'
 import { basicArticleData } from '../basicData&Settings/basicArticleData'
 import { schemaSettings } from '../basicData&Settings/schemaSettings'
 
@@ -42,3 +42,4 @@ export const caseSchema = mongoose.Schema({
         warranty: schemaSettings.string,
     },
 })
+export const ArticleCaseModel = mongoose.model('caseCol', caseSchema)

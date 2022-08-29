@@ -1,4 +1,4 @@
-import { mongoose } from 'mongoose'
+import mongoose from 'mongoose'
 import { basicArticleData } from '../basicData&Settings/basicArticleData'
 import { schemaSettings } from '../basicData&Settings/schemaSettings'
 
@@ -11,3 +11,4 @@ export const storageSchema = mongoose.Schema({
     maxPowerConsumption: schemaSettings.number,
     shockResistance: schemaSettings.number,
 })
+export const ArticleStorageModel = mongoose.model('storageCol', storageSchema)

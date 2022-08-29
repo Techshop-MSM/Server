@@ -1,6 +1,6 @@
-import { mongoose } from "mongoose";
-import { basicArticleData } from "../basicData&Settings/basicArticleData";
-import { schemaSettings } from "../basicData&Settings/schemaSettings";
+import mongoose from 'mongoose'
+import { basicArticleData } from '../basicData&Settings/basicArticleData'
+import { schemaSettings } from '../basicData&Settings/schemaSettings'
 
 export const soundCardSchema = mongoose.Schema({
     baseData: basicArticleData,
@@ -8,7 +8,7 @@ export const soundCardSchema = mongoose.Schema({
     color: schemaSettings.string,
     soundchip: schemaSettings.string,
     powerConnection: schemaSettings.string,
-    maxChannel:	schemaSettings.number,
+    maxChannel: schemaSettings.number,
     maxPlaybackQuality: schemaSettings.string,
     maxRecordingQuality: schemaSettings.string,
     lineIn: {
@@ -28,3 +28,7 @@ export const soundCardSchema = mongoose.Schema({
         operationManual: schemaSettings.bool,
     },
 })
+export const ArticleSoundCardModel = mongoose.model(
+    'soundCardCol',
+    soundCardSchema
+)
