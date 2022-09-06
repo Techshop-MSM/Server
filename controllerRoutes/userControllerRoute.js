@@ -1,4 +1,4 @@
-import express from "express";
+import {Router} from "express";
 import router from express.Router();
 import { register, login } from ("../controller/userController");
 

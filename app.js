@@ -4,7 +4,7 @@ import './db/mongo-connect.js';
 import {
     loginRouter,
     registerRouter,
-} from './controllerRoutes/userControllerRoute';
+} from './controllerRoutes/userControllerRoute.js';
 
 const app = express();
 
