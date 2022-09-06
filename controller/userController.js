@@ -1,29 +1,36 @@
+import { CompanyDataModel } from '../schemas/company/companySchema';
 import { UserDataModel } from '../schemas/user/userSchema';
 import { authenticateToken, createAccessToken } from '../security/jwt_auth';
 
 export const register = async (req, res) => {
     try {
-        let dataOfUser = {};
         const hashPW = await bcrypt.hash(req.body.password, saltRounds);
 
-        (dataOfUser = {
-            mail: req.body.email,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            username: req.body.username,
-            password: hashPW,
-            group: userGroups[0],
-        }),
-            //SAVE: userData to userDB
+        //SAVE: userData to userDB
+        if (req.body.userGroupe === 'company') {
+            const dataOfCompany = {
+                mail: req.body.mail,
+                companyName: req.body.company,
+                contactPerson: req.body.contactPerson,
+                password: hashPW,
+                group: req.body.userGroupe,
+            };
+            CompanyDataModel(dataOfCompany).save();
+            res.send('Successfull registrated!');
+        } else {
+            const dataOfUser = {
+                mail: req.body.mail,
+                username: req.body.username,
+                password: hashPW,
+                group: req.body.userGroupe,
+            };
             UserDataModel(dataOfUser).save();
-        res.send('Successfull registrated!');
+            res.send('Successfull registrated!');
+        }
     } catch (error) {
         console.log('ERROR:', error, 'Error by registration!');
     }
 };
-
-// USERNAME: Martin
-// PASSWORD: LoginPW123!
 
 exports.login = async (req, res) => {
     console.log('Login process started... ');
