@@ -3,6 +3,11 @@
 As a final project for the FullStack Webdeveloper Course of the DCI gGmbH we are going to create the Server of the Techshop MMS(?). The final project name is still under discussion.
 We want to sell the freshest Hardware to you!
 
+TESTUSER DATA:
+MAIL: mms.testuser@gmx.de
+USERNAME: Testuser
+PASSWORD: LoginPW123!
+
 The TechStack as planned so far:
 
 ## backend
