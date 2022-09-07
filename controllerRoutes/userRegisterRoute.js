@@ -5,7 +5,7 @@ import { register } from '../controller/userController.js';
 const registerRouter = express.Router();
 
 registerRouter.get('/', (req, res) => {
-    res.send('<h1>welcome to the register</h1>');
+    res.send('<h1>welcome to the register site</h1>');
 });
 
 registerRouter.post('/', register);
