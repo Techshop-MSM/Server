@@ -7,6 +7,6 @@ loginRouter.get('/', (req, res) => {
     res.send('<h1>welcome to the login</h1>');
 });
 
-loginRouter.post('/login', login);
+loginRouter.post('/', login);
 
 export default loginRouter;

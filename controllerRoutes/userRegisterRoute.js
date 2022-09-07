@@ -8,6 +8,6 @@ registerRouter.get('/', (req, res) => {
     res.send('<h1>welcome to the register</h1>');
 });
 
-registerRouter.post('/register', register);
+registerRouter.post('/', register);
 
 export default registerRouter;
