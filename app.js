@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import './db/mongo-connect.js';
-import registerRouter from './controllerRoutes/userControllerRoute.js';
+import registerRouter from './controllerRoutes/userRegisterRoute.js';
 import loginRouter from './controllerRoutes/userLoginRoute.js';
 
 const app = express();
