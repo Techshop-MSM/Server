@@ -1,6 +1,6 @@
-import { CompanyDataModel } from '../schemas/company/companySchema';
-import { UserDataModel } from '../schemas/user/userSchema';
-import { authenticateToken, createAccessToken } from '../security/jwt_auth';
+import { CompanyDataModel } from '../schemas/company/companySchema.js';
+import { UserDataModel } from '../schemas/user/userSchema.js';
+import { authenticateToken, createAccessToken } from '../security/jwt_auth.js';
 
 export const register = async (req, res) => {
     try {
@@ -32,7 +32,7 @@ export const register = async (req, res) => {
     }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
     console.log('Login process started... ');
 
     //Find: userData in userDB
