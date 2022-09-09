@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import { UserDataModel } from '../schemas/user/userSchema.js';
 const token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 
-
 // Auth function
 export const authenticateToken = (req, res, next) => {
     const token = req.headers['authtoken'];

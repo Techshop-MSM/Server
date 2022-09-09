@@ -31,4 +31,4 @@ const userSchema = mongoose.Schema({
     newsletter: schemaSettings.bool,
 });
 
-export const UserDataModel = mongoose.model( 'users', userSchema);
+export const UserDataModel = mongoose.model('users', userSchema);
