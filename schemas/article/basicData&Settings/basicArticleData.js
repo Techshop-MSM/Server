@@ -1,5 +1,5 @@
-import { mongoose } from 'mongoose'
-import { schemaSettings } from './schemaSettings'
+import { mongoose } from 'mongoose';
+import { schemaSettings } from './schemaSettings.js';
 
 export const basicArticleData = mongoose.Schema({
     articleNr: schemaSettings.reqNumber,
@@ -16,4 +16,4 @@ export const basicArticleData = mongoose.Schema({
         ratingAvg: schemaSettings.number,
     },
     comments: schemaSettings.array,
-})
+});

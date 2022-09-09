@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
-import { schemaSettings } from '../article/basicData&Settings/schemaSettings'
+import mongoose from 'mongoose';
+import { schemaSettings } from '../article/basicData&Settings/schemaSettings.js';
 
 export const companySchema = mongoose.Schema({
     company: {
@@ -16,6 +16,6 @@ export const companySchema = mongoose.Schema({
         bank: schemaSettings.reqString,
     },
     articles: schemaSettings.array,
-})
+});
 
-export const CompanyDataModel = mongoose.model('companyCol', companySchema)
+export const CompanyDataModel = mongoose.model('companyCol', companySchema);
