@@ -25,6 +25,8 @@ export const authenticateToken = (req, res, next) => {
 
 // Create Token with userData(DB)
 export const createAccessToken = (user) => {
-    const accessToken = jwt.sign(user, envConfig.ACCESS_TOKEN_SECRET);
+    const accessToken = jwt.sign({ user }, envConfig.ACCESS_TOKEN_SECRET, {
+        expiresIn: '7d',
+    });
     return accessToken;
 };

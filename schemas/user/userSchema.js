@@ -27,6 +27,12 @@ const userSchema = mongoose.Schema({
         bank: schemaSettings.string,
         sepa: schemaSettings.bool,
     },
+    company: {
+        name: schemaSettings.reqString,
+        form: schemaSettings.string,
+        hra: schemaSettings.number,
+        tax: schemaSettings.number,
+    },
     wishlist: schemaSettings.array,
     newsletter: schemaSettings.bool,
 });
