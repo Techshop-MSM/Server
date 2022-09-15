@@ -41,6 +41,6 @@ export const mainboardSchema = mongoose.Schema({
     info: schemaSettings.string,
 });
 export const ArticleMainboardModel = mongoose.model(
-    'mainboardCol',
+    'mainboard',
     mainboardSchema
 );
