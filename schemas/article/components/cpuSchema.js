@@ -24,4 +24,4 @@ export const cpuSchema = mongoose.Schema({
     tdp: schemaSettings.number,
     info: schemaSettings.string,
 });
-export const ArticleCpuModel = mongoose.model('cpuCol', cpuSchema);
+export const cpuModel = mongoose.model('cpu', cpuSchema);

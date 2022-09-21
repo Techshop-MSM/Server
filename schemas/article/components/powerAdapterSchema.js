@@ -11,7 +11,4 @@ export const powerAdapterSchema = mongoose.Schema({
     maxPowerConsumption: schemaSettings.number,
     shockResistance: schemaSettings.number,
 });
-export const ArticlePowerAdapterModel = mongoose.model(
-    'powerAdapterCol',
-    powerAdapterSchema
-);
+export const powerModel = mongoose.model('powerAdapter', powerAdapterSchema);

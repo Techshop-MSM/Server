@@ -26,9 +26,10 @@ export const schemaSettings = {
         h: { type: Number },
         d: { type: Number },
     },
-    /* 
-    removed the company id, have to be set directly in the the schema itself 
+    
     companyID: {
-        type: 
-    } */
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'companys'
+    },
+    
 };

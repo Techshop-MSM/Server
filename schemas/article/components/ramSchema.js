@@ -18,4 +18,4 @@ export const ramSchema = mongoose.Schema({
     feature: schemaSettings.string,
     info: schemaSettings.string,
 });
-export const ArticleRamModel = mongoose.model('ramCol', ramSchema);
+export const ramModel = mongoose.model('ram', ramSchema);

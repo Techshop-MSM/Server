@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { basicArticleData } from '../basicData&Settings/basicArticleData.js';
 import { schemaSettings } from '../basicData&Settings/schemaSettings.js';
 
-export const GrakaSchema = mongoose.Schema({
+export const gpuSchema = mongoose.Schema({
     baseData: basicArticleData,
     size: schemaSettings.sizes,
     height: schemaSettings.number,
@@ -25,4 +25,4 @@ export const GrakaSchema = mongoose.Schema({
     recommended: schemaSettings.string,
     features: schemaSettings.string,
 });
-export const ArticleGpuModel = mongoose.model('gpuCol', gpuSchema);
+export const gpuModel = mongoose.model('gpu', gpuSchema);

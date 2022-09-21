@@ -28,7 +28,4 @@ export const soundCardSchema = mongoose.Schema({
         operationManual: schemaSettings.bool,
     },
 });
-export const ArticleSoundCardModel = mongoose.model(
-    'soundCardCol',
-    soundCardSchema
-);
+export const soundCardModel = mongoose.model('soundCard', soundCardSchema);

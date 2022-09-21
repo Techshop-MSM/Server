@@ -11,4 +11,4 @@ export const storageSchema = mongoose.Schema({
     maxPowerConsumption: schemaSettings.number,
     shockResistance: schemaSettings.number,
 });
-export const ArticleStorageModel = mongoose.model('storageCol', storageSchema);
+export const storageModel = mongoose.model('storage', storageSchema);

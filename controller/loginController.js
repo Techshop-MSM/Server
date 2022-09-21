@@ -37,7 +37,7 @@ export const loginController = async (req, res) => {
                 sex: userFromDB.sex,
                 group: userFromDB.group,
             }
-        }else if(userFromDB === 'company'){
+        }else if(userFromDB.group === 'company'){
             userData = {
                 userID: userFromDB._id,
                 username: userFromDB.username,
@@ -46,9 +46,9 @@ export const loginController = async (req, res) => {
                 group: userFromDB.group,
             }
         }
-        console.log(userData)
+        console.log("userFromDB", userFromDB, "userDataTofrontend", userData)
         const generateToken = createAccessToken(userData);
-        console.log(generateToken)
+        //console.log(generateToken)
         // Send Data to Frontend
         res.send({
             isLogedIn: isLogedIn,
