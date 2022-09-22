@@ -1,52 +1,60 @@
-import { createArticleNumber } from "./objectCreatorFactories/createArticleNumber.js";
-import { createRandomProductNumber } from "./objectCreatorFactories/createProductNumber.js";
+import { caseModel } from '../schemas/article/components/caseSchema.js';
+import { CompanyDataModel } from '../schemas/company/companySchema.js';
+import { createArticleNumber } from './objectCreatorFactories/createArticleNumber.js';
+import { createRandomProductNumber } from './objectCreatorFactories/createProductNumber.js';
+import { randomStock } from './objectCreatorFactories/randomStock.js';
 
 export const caseCreator = (data, cat) => {
-    const caseObj = {
-        articleName: data.name,
-        articleNr: createArticleNumber(data.name, cat),
-        category: cat,
-        producerNr: createRandomProductNumber(),
-        company: schemaSettings.companyID, // populate
-        priceEK: data.price_usd,
-        priceVK: priceEk * 1.2 * 1.19,
-        counter: {
-            stock: randomStock(),
-            ratingCounter: data.rating_count,
-            purchases: schemaSettings.number,
-            ratings: schemaSettings.number,
-            ratingAvg: ratingSum / ratingCounter,
-        },
-        comments: schemaSettings.array,
+    const casesUpload = [];
 
-        type: data.type,
-        color: data.color,
-        drive: data.side_panel_window,
-        powerSupply: data.power_supply,
-        audioConnection: schemaSettings.string,
-    };
+    data.map((article) => {
+        let brand = { name: article.name.split(' ') };
+        let caseObj = {
+            articleName: article.name,
+            articleNr: createArticleNumber(article.name, cat),
+            category: cat,
+            brand: brand.name,
+            producerNr: createRandomProductNumber(),
+            //company: CompanyDataModel.findOne(brand.name), // populate
+            priceEK: article.price_usd,
+            counter: {
+                stock: randomStock(),
+                purchases: article.rating_count,
+                ratingCounter: 5,
+                ratings: [3, 5, 2, 4, 1],
+            },
+            comments: [],
+
+            type: article.type,
+            color: article.color,
+            drive: article.side_panel_window,
+            powerSupply: article.power_supply,
+        };
+        casesUpload.push(caseObj);
+        caseModel(caseObj).save();
+    });
+    console.log('Case 01:', casesUpload[0]);
+    return casesUpload;
 };
 
 export const cpuCreator = (data, cat) => {
-    const cpuObj = {
-        cpuTyp: schemaSettings.string,
-        form: schemaSettings.string,
-        socket: schemaSettings.number,
-        pci: schemaSettings.string,
-        coreName: schemaSettings.string,
-        cores: schemaSettings.number,
-        threads: schemaSettings.number,
-        coretype: schemaSettings.string,
-        frequenz: schemaSettings.string,
-        unlocked: schemaSettings.bool,
-        boxed: schemaSettings.bool,
-        architecture: schemaSettings.string,
-        cache: schemaSettings.string,
-        fan: schemaSettings.string,
-        channels: schemaSettings.number,
-        ramSupport: schemaSettings.string,
-        onboardGPU: schemaSettings.string,
-        tdp: schemaSettings.number,
-        info: schemaSettings.string,
-    };
+    const cpuUpload = [];
+    data.map((article) => {
+        let nameDetails = { type: article.name.split(' ') };
+
+        const cpuObj = {
+            cpuTyp: `${nameDetails.type[1]} ${nameDetails.type[2]}`,
+            model: nameDetails.type[3] || nameDetails.type[1],
+            socket: 'k.A',
+            cores: article.core_count,
+            coreClock: article.core_clock,
+            boostClock: article.boost_clock,
+            boxed: article.smt,
+            onboardGPU: article.integrated_graphics,
+            tdp: article.tdp,
+            info: 'k.A',
+        };
+        cpuUpload.push(cpuObj);
+    });
+    console.log('CPU 01:', cpuUpload[0], 'CPU 05:', cpuUpload[4]);
 };

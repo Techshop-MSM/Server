@@ -10,15 +10,14 @@ import { caseCreator, cpuCreator } from './objectCreator.js';
 
 // handle different operations to different Collections
 export const mongoCollectionInstance = (data, cat) => {
+    console.log(cat);
     switch (cat) {
         case 'case':
-            console.log(caseCreator(data, cat))
-            //caseModel(caseObj).save();
+            caseCreator(data, cat)
             break;
 
         case 'cpu':
-            console.log(cpuCreator(data, cat))
-            //cpuModel().save();
+            cpuCreator(data, cat);
             break;
 
         case 'gpu':

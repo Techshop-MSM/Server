@@ -1,49 +1,43 @@
 export const createArticleNumber = (name, cat) => {
+    let brand = name.slice(0, 3);
     let articleNumber = '';
-    const brand = name.slice(0, 3);
     switch (cat) {
         case 'case':
-            articleNumber = Math.floor(Math.random() * 100000);
-            console.log(`C_${articleNumber}`);
+            articleNumber = `C_${Math.floor(Math.random() * 100000)}`;
             break;
 
         case 'cpu':
-            articleNumber = Math.floor(Math.random() * 100000);
+            articleNumber = `${brand}_${Math.floor(Math.random() * 100000)}`;
             console.log(`${brand}_${articleNumber}`);
             break;
 
         case 'gpu':
-            articleNumber = Math.floor(Math.random() * 100000);
-            console.log(`${brand}_${articleNumber}`);
+            articleNumber = `${brand}_${Math.floor(Math.random() * 100000)}`;
             break;
 
         case 'mainboard':
-            articleNumber = Math.floor(Math.random() * 100000);
-            console.log(`${brand}_${articleNumber}`);
+            articleNumber = `${brand}_${Math.floor(Math.random() * 100000)}`;
             break;
 
         case 'power':
-            articleNumber = Math.floor(Math.random() * 100000);
-            console.log(`P_${articleNumber}`);
+            articleNumber = `P_${Math.floor(Math.random() * 100000)}`;
             break;
 
         case 'ram':
-            articleNumber = Math.floor(Math.random() * 100000);
-            console.log(`RAM_${articleNumber}`);
+            articleNumber = `RAM_${Math.floor(Math.random() * 100000)}`;
             break;
 
         case 'sound':
-            articleNumber = Math.floor(Math.random() * 100000);
-            console.log(`S_${articleNumber}`);
+            articleNumber = `SOU_${Math.floor(Math.random() * 100000)}`;
             break;
 
         case 'storage':
-            articleNumber = Math.floor(Math.random() * 100000);
-            console.log(`HD_${articleNumber}`);
+            articleNumber = `HD_${Math.floor(Math.random() * 100000)}`;
             break;
 
         default:
-            console.log('Model not found!');
+            console.log('articleModel not found!');
             break;
     }
+    return `${articleNumber}`;
 };
