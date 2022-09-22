@@ -34,7 +34,7 @@ export const caseCreator = (data, cat) => {
         caseModel(caseObj).save();
     });
     console.log('Case 01:', casesUpload[0]);
-    return casesUpload;
+    
 };
 
 export const cpuCreator = (data, cat) => {
@@ -44,7 +44,7 @@ export const cpuCreator = (data, cat) => {
 
         const cpuObj = {
             cpuTyp: `${nameDetails.type[1]} ${nameDetails.type[2]}`,
-            model: nameDetails.type[3] || nameDetails.type[1],
+            model: nameDetails.type[3],
             socket: 'k.A',
             cores: article.core_count,
             coreClock: article.core_clock,
@@ -57,4 +57,138 @@ export const cpuCreator = (data, cat) => {
         cpuUpload.push(cpuObj);
     });
     console.log('CPU 01:', cpuUpload[0], 'CPU 05:', cpuUpload[4]);
+};
+
+export const gpuCreator = (data, cat) => {
+    const gpuUpload = [];
+    data.map((article) => {
+        let nameDetails = { type: article.chipset.split(' ') };
+
+        const gpuObj = {
+            type: nameDetails.type[1],
+            model: nameDetails.type[2],
+            version: nameDetails.type[3] || 'basic',
+            size: article.length,
+            chip: article.chipset,
+            gpuFrequenz: article.core_clock,
+            OcModeBoost: article.boost_clock,
+            storage: article.memory,
+            recommended: 'k.A',
+            info: 'k.A',
+        };
+        gpuUpload.push(gpuObj);
+    });
+    console.log('GPU 01:', gpuUpload[0], 'GPU 04:', gpuUpload[3]);
+};
+
+export const mainboardCreator = (data, cat) => {
+    const mainboardUpload = [];
+    data.map((article) => {
+        let nameDetails = { type: article.name.split(' ') };
+
+        const mainboardObj = {
+            typeModelVersion: [
+                nameDetails.type[1],
+                nameDetails.type[2],
+                nameDetails.type[3],
+            ],
+            form: article.form_factor,
+            socket: article.socket,
+            supportedCPUs: [],
+            maxMemory: article.memory_max,
+            ramSocket: article.memory_slots,
+            supportedRamTypes: [],
+            recommended: 'k.A',
+            info: 'k.A',
+        };
+        mainboardUpload.push(mainboardObj);
+    });
+    console.log(
+        'mainboard 01:',
+        mainboardUpload[0],
+        'mainboard 04:',
+        mainboardUpload[3]
+    );
+};
+
+export const powerCreator = (data, cat) => {
+    const powerUpload = [];
+    data.map((article) => {
+        // let nameDetails = { type: article.efficiency_rating.split(' ') }; // funktioniert nicht!
+        // let nameDetails = { type: article.name.split(' ') }; // funktioniert
+
+        const powerObj = {
+            form: article.form_factor,
+            maxPower: article.wattage,
+            efficiency: nameDetails.type[0],
+            effiClass: nameDetails.type[1] || 'k.A',
+            shockResistance: article.modular,
+            cableManagement: article.modular,
+            recommended: 'k.A',
+            info: 'k.A',
+        };
+        powerUpload.push(powerObj);
+    });
+    console.log('power 01:', powerUpload[0], 'power 04:', powerUpload[3]);
+};
+
+export const ramCreator = (data, cat) => {
+    const ramUpload = [];
+    data.map((article) => {
+        let form = { ddr: article.speed.split('-') };
+        const ramObj = {
+            form: form.ddr[0],
+            capacity: article.speed,
+            modules: article.modules,
+            physicRate: article.cas_latency,
+            firstLatency: article.first_word_latency,
+            color: article.color,
+            pricePerGB: article.pricePerGB,
+            recommended: 'k.A',
+            info: 'k.A',
+        };
+        ramUpload.push(ramObj);
+    });
+    console.log('ram 01:', ramUpload[0], 'ram 04:', ramUpload[3]);
+};
+
+export const soundCreator = (data, cat) => {
+    const soundUpload = [];
+    data.map((article) => {
+        const soundObj = {
+            soundchip: article.chipset,
+            channel: article.channels,
+            digital: article.digital_audio,
+            audio: article.snr,
+            sampleRate: article.sample_rate,
+            powerConnection: article.interface,
+            recommended: 'k.A',
+            info: 'k.A',
+        };
+        soundUpload.push(soundObj);
+    });
+    console.log('sound 01:', soundUpload[0], 'sound 04:', soundUpload[3]);
+};
+
+export const storageCreator = (data, cat) => {
+    const storageUpload = [];
+    data.map((article) => {
+        const storageObj = {
+            form: article.form_factor,
+            capacity: article.capacity,
+            type: article.type,
+            cache: article.cache,
+            interface: article.interface,
+            pricePerGB: article.pricePerGB,
+            recommended: 'k.A',
+            info: 'k.A',
+        };
+        storageUpload.push(storageObj);
+    });
+    console.log(
+        'storage 01:',
+        storageUpload[0],
+        'storage 04:',
+        storageUpload[3]
+    );
 };

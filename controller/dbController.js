@@ -40,6 +40,7 @@ export const dbController = async (req, res) => {
                 'data to the Database.'
             );
             mongoCollectionInstance(data, cat);
+            res.send('uploaded');
             break;
 
         default:

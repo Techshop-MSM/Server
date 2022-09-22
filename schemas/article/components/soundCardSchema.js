@@ -4,28 +4,14 @@ import { schemaSettings } from '../basicData&Settings/schemaSettings.js';
 
 export const soundCardSchema = mongoose.Schema({
     baseData: basicArticleData,
-    size: schemaSettings.sizes,
-    color: schemaSettings.string,
+
     soundchip: schemaSettings.string,
+    channel: schemaSettings.number,
+    digital: schemaSettings.string,
+    audio: schemaSettings.string,
+    sampleRate: schemaSettings.string,
     powerConnection: schemaSettings.string,
-    maxChannel: schemaSettings.number,
-    maxPlaybackQuality: schemaSettings.string,
-    maxRecordingQuality: schemaSettings.string,
-    lineIn: {
-        opticIn: schemaSettings.string,
-        microIn: schemaSettings.string,
-        jackIn: schemaSettings.number,
-        boxLink: schemaSettings.number,
-    },
-    lineOut: {
-        opticOut: schemaSettings.string,
-        jackOut: schemaSettings.number,
-    },
-    delivery: {
-        controlBox: schemaSettings.number,
-        adapter: schemaSettings.string,
-        linkCable: schemaSettings.number,
-        operationManual: schemaSettings.bool,
-    },
+    recommended: schemaSettings.string,
+    info: schemaSettings.string,
 });
 export const soundCardModel = mongoose.model('soundCard', soundCardSchema);
