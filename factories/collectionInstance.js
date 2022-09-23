@@ -1,3 +1,7 @@
+import mongoose from 'mongoose';
+import { caseModel } from '../schemas/article/components/caseSchema.js';
+import { cpuModel } from '../schemas/article/components/cpuSchema.js';
+import { loadDataFromDB } from './loadDatafromDB.js';
 import {
     caseCreator,
     cpuCreator,
@@ -10,39 +14,47 @@ import {
 } from './objectCreator.js';
 
 // handle different operations to different Collections
-export const mongoCollectionInstance = (data, cat) => {
+export const mongoCollectionInstance = (data, cat, reason) => {
     console.log(cat);
     switch (cat) {
         case 'case':
-            caseCreator(data, cat);
+            reason === 'upload' && caseCreator(data, cat);
+            reason === 'load' && loadDataFromDB(cat);
             break;
 
         case 'cpu':
-            cpuCreator(data, cat);
+            reason === 'upload' && cpuCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         case 'gpu':
-            gpuCreator(data, cat);
+            reason === 'upload' && gpuCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         case 'mainboard':
-            mainboardCreator(data, cat);
+            reason === 'upload' && mainboardCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
-        case 'power':
-            powerCreator(data, cat);
+        case 'powerAdapter':
+            reason === 'upload' && powerCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         case 'ram':
-            ramCreator(data, cat);
+            reason === 'upload' && ramCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
-        case 'sound':
-            soundCreator(data, cat);
+        case 'soundCard':
+            reason === 'upload' && soundCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         case 'storage':
-            storageCreator(data, cat);
+            reason === 'upload' && storageCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         default:

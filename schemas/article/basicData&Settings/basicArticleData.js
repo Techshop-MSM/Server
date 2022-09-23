@@ -3,12 +3,11 @@ import { schemaSettings } from './schemaSettings.js';
 
 export const basicArticleData = mongoose.Schema({
     articleName: schemaSettings.reqString,
-    articleNr: schemaSettings.number,
+    articleNr: schemaSettings.string,
     category: schemaSettings.reqString,
     producerNr: schemaSettings.string,
     company: schemaSettings.companyID, // populate
     priceEK: schemaSettings.reqNumber,
-    priceVK: schemaSettings.number,
     counter: {
         stock: schemaSettings.number,
         ratingCounter: schemaSettings.number,

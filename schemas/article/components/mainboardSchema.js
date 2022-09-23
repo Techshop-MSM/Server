@@ -8,7 +8,7 @@ export const mainboardSchema = mongoose.Schema({
     form: schemaSettings.string,
     socket: schemaSettings.string,
     supportedCPU: schemaSettings.array,
-    maxMemory: schemaSettings.number,
+    maxMemory: schemaSettings.string,
     ramSocket: schemaSettings.string,
     supportedRamTypes: schemaSettings.array,
     recommended: schemaSettings.string,

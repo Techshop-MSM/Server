@@ -5,13 +5,13 @@ import { schemaSettings } from '../basicData&Settings/schemaSettings.js';
 export const gpuSchema = mongoose.Schema({
     baseData: basicArticleData,
     size: schemaSettings.string,
-    type: schemaSettings.number,
+    type: schemaSettings.string,
     model: schemaSettings.string,
     version: schemaSettings.string,
     chip: schemaSettings.string,
-    gpuFrequenz: schemaSettings.number,
-    OcModeBoost: schemaSettings.number,
-    memory: schemaSettings.number,
+    gpuFrequenz: schemaSettings.string,
+    OcModeBoost: schemaSettings.string,
+    memory: schemaSettings.string,
     recommended: schemaSettings.string,
     info: schemaSettings.string,
 });

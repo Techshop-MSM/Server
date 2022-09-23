@@ -6,7 +6,7 @@ export const soundCardSchema = mongoose.Schema({
     baseData: basicArticleData,
 
     soundchip: schemaSettings.string,
-    channel: schemaSettings.number,
+    channel: schemaSettings.string,
     digital: schemaSettings.string,
     audio: schemaSettings.string,
     sampleRate: schemaSettings.string,

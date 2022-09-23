@@ -1,15 +1,20 @@
 import { caseModel } from '../schemas/article/components/caseSchema.js';
+import { cpuModel } from '../schemas/article/components/cpuSchema.js';
+import { gpuModel } from '../schemas/article/components/gpuSchema.js';
+import { mainboardModel } from '../schemas/article/components/mainboardSchema.js';
+import { powerModel } from '../schemas/article/components/powerAdapterSchema.js';
+import { ramModel } from '../schemas/article/components/ramSchema.js';
+import { soundCardModel } from '../schemas/article/components/soundCardSchema.js';
+import { storageModel } from '../schemas/article/components/storageSchema.js';
 import { CompanyDataModel } from '../schemas/company/companySchema.js';
 import { createArticleNumber } from './objectCreatorFactories/createArticleNumber.js';
 import { createRandomProductNumber } from './objectCreatorFactories/createProductNumber.js';
 import { randomStock } from './objectCreatorFactories/randomStock.js';
 
-export const caseCreator = (data, cat) => {
-    const casesUpload = [];
-
-    data.map((article) => {
-        let brand = { name: article.name.split(' ') };
-        let caseObj = {
+const baseData = (article, cat) => {
+    let brand = { name: article.name.split(' ') };
+    return {
+        baseData: {
             articleName: article.name,
             articleNr: createArticleNumber(article.name, cat),
             category: cat,
@@ -24,7 +29,16 @@ export const caseCreator = (data, cat) => {
                 ratings: [3, 5, 2, 4, 1],
             },
             comments: [],
+        },
+    };
+};
 
+export const caseCreator = (data, cat) => {
+    const casesUpload = [];
+
+    data.map((article) => {
+        let caseObj = {
+            ...baseData(article, cat),
             type: article.type,
             color: article.color,
             drive: article.side_panel_window,
@@ -34,7 +48,6 @@ export const caseCreator = (data, cat) => {
         caseModel(caseObj).save();
     });
     console.log('Case 01:', casesUpload[0]);
-    
 };
 
 export const cpuCreator = (data, cat) => {
@@ -43,6 +56,7 @@ export const cpuCreator = (data, cat) => {
         let nameDetails = { type: article.name.split(' ') };
 
         const cpuObj = {
+            ...baseData(article, cat),
             cpuTyp: `${nameDetails.type[1]} ${nameDetails.type[2]}`,
             model: nameDetails.type[3],
             socket: 'k.A',
@@ -55,8 +69,9 @@ export const cpuCreator = (data, cat) => {
             info: 'k.A',
         };
         cpuUpload.push(cpuObj);
+        cpuModel(cpuObj).save();
     });
-    console.log('CPU 01:', cpuUpload[0], 'CPU 05:', cpuUpload[4]);
+    console.log('CPU 01:', cpuUpload[0]);
 };
 
 export const gpuCreator = (data, cat) => {
@@ -65,6 +80,7 @@ export const gpuCreator = (data, cat) => {
         let nameDetails = { type: article.chipset.split(' ') };
 
         const gpuObj = {
+            ...baseData(article, cat),
             type: nameDetails.type[1],
             model: nameDetails.type[2],
             version: nameDetails.type[3] || 'basic',
@@ -72,13 +88,14 @@ export const gpuCreator = (data, cat) => {
             chip: article.chipset,
             gpuFrequenz: article.core_clock,
             OcModeBoost: article.boost_clock,
-            storage: article.memory,
+            memory: article.memory,
             recommended: 'k.A',
             info: 'k.A',
         };
         gpuUpload.push(gpuObj);
+        gpuModel(gpuObj).save();
     });
-    console.log('GPU 01:', gpuUpload[0], 'GPU 04:', gpuUpload[3]);
+    console.log('GPU 01:', gpuUpload[0]);
 };
 
 export const mainboardCreator = (data, cat) => {
@@ -87,6 +104,7 @@ export const mainboardCreator = (data, cat) => {
         let nameDetails = { type: article.name.split(' ') };
 
         const mainboardObj = {
+            ...baseData(article, cat),
             typeModelVersion: [
                 nameDetails.type[1],
                 nameDetails.type[2],
@@ -102,22 +120,19 @@ export const mainboardCreator = (data, cat) => {
             info: 'k.A',
         };
         mainboardUpload.push(mainboardObj);
+        mainboardModel(mainboardObj).save();
     });
-    console.log(
-        'mainboard 01:',
-        mainboardUpload[0],
-        'mainboard 04:',
-        mainboardUpload[3]
-    );
+    console.log('mainboard 01:', mainboardUpload[0]);
 };
 
 export const powerCreator = (data, cat) => {
     const powerUpload = [];
     data.map((article) => {
-        // let nameDetails = { type: article.efficiency_rating.split(' ') }; // funktioniert nicht!
-        // let nameDetails = { type: article.name.split(' ') }; // funktioniert
+        console.log(article);
+        let nameDetails = { type: article.efficiency_rating.split(' ') };
 
         const powerObj = {
+            ...baseData(article, cat),
             form: article.form_factor,
             maxPower: article.wattage,
             efficiency: nameDetails.type[0],
@@ -128,8 +143,9 @@ export const powerCreator = (data, cat) => {
             info: 'k.A',
         };
         powerUpload.push(powerObj);
+        powerModel(powerObj).save();
     });
-    console.log('power 01:', powerUpload[0], 'power 04:', powerUpload[3]);
+    console.log('power 01:', powerUpload[0]);
 };
 
 export const ramCreator = (data, cat) => {
@@ -137,6 +153,7 @@ export const ramCreator = (data, cat) => {
     data.map((article) => {
         let form = { ddr: article.speed.split('-') };
         const ramObj = {
+            ...baseData(article, cat),
             form: form.ddr[0],
             capacity: article.speed,
             modules: article.modules,
@@ -148,14 +165,16 @@ export const ramCreator = (data, cat) => {
             info: 'k.A',
         };
         ramUpload.push(ramObj);
+        ramModel(ramObj).save();
     });
-    console.log('ram 01:', ramUpload[0], 'ram 04:', ramUpload[3]);
+    console.log('ram 01:', ramUpload[0]);
 };
 
 export const soundCreator = (data, cat) => {
     const soundUpload = [];
     data.map((article) => {
         const soundObj = {
+            ...baseData(article, cat),
             soundchip: article.chipset,
             channel: article.channels,
             digital: article.digital_audio,
@@ -166,14 +185,16 @@ export const soundCreator = (data, cat) => {
             info: 'k.A',
         };
         soundUpload.push(soundObj);
+        soundCardModel(soundObj).save();
     });
-    console.log('sound 01:', soundUpload[0], 'sound 04:', soundUpload[3]);
+    console.log('sound 01:', soundUpload[0]);
 };
 
 export const storageCreator = (data, cat) => {
     const storageUpload = [];
     data.map((article) => {
         const storageObj = {
+            ...baseData(article, cat),
             form: article.form_factor,
             capacity: article.capacity,
             type: article.type,
@@ -184,11 +205,7 @@ export const storageCreator = (data, cat) => {
             info: 'k.A',
         };
         storageUpload.push(storageObj);
+        storageModel(storageObj).save();
     });
-    console.log(
-        'storage 01:',
-        storageUpload[0],
-        'storage 04:',
-        storageUpload[3]
-    );
+    console.log('storage 01:', storageUpload[0]);
 };
