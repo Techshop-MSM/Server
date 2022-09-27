@@ -8,13 +8,14 @@ export const loginController = async (req, res) => {
     let userFromDB = {}
 
     //Find: userData in userDB
+    console.log("kommt an", req.body.identifier)
     userFromDB = await UserDataModel.findOne({
         $or: [{ username: req.body.identifier }, { mail: req.body.identifier }],
     });
 
     if(!userFromDB){
-        console.log("company IN")
-        userFromDB = await CompanyDataModel.findOne({
+        
+        userFromDB = await UserDataModel.findOne({
             $or: [{ contact: req.body.identifier }, { mail: req.body.identifier }],
         });
         console.log("CompanyUser:", userFromDB)
@@ -43,6 +44,13 @@ export const loginController = async (req, res) => {
                 username: userFromDB.username,
                 sex: userFromDB.sex,
                 company: userFromDB.name,
+                group: userFromDB.group,
+            }
+        }else if(userFromDB.group === 'admin'){
+            userData = {
+                userID: userFromDB._id,
+                username: userFromDB.username,
+                sex: userFromDB.sex,
                 group: userFromDB.group,
             }
         }

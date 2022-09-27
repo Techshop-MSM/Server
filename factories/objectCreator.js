@@ -22,12 +22,10 @@ const baseData = (article, cat) => {
             producerNr: createRandomProductNumber(),
             //company: CompanyDataModel.findOne(brand.name), // populate
             priceEK: article.price_usd,
-            counter: {
-                stock: randomStock(),
-                purchases: article.rating_count,
-                ratingCounter: 5,
-                ratings: [3, 5, 2, 4, 1],
-            },
+            stock: randomStock(),
+            purchases: article.rating_count,
+            ratingCounter: 5,
+            ratings: [3, 5, 2, 4, 1],
             comments: [],
         },
     };

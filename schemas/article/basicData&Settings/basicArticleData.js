@@ -8,12 +8,10 @@ export const basicArticleData = mongoose.Schema({
     producerNr: schemaSettings.string,
     company: schemaSettings.companyID, // populate
     priceEK: schemaSettings.reqNumber,
-    counter: {
-        stock: schemaSettings.number,
-        ratingCounter: schemaSettings.number,
-        purchases: schemaSettings.number,
-        ratings: schemaSettings.array,
-        ratingAvg: schemaSettings.number,
-    },
+    stock: schemaSettings.number,
+    ratingCounter: schemaSettings.number,
+    purchases: schemaSettings.number,
+    ratings: schemaSettings.array,
+    ratingAvg: schemaSettings.number,
     comments: schemaSettings.array,
 });
