@@ -4,11 +4,14 @@ import { schemaSettings } from '../basicData&Settings/schemaSettings.js';
 
 export const powerAdapterSchema = mongoose.Schema({
     baseData: basicArticleData,
-    zoll: schemaSettings.number,
-    capacity: schemaSettings.number,
-    Umdrehung: schemaSettings.number,
-    cache: schemaSettings.number,
-    maxPowerConsumption: schemaSettings.number,
-    shockResistance: schemaSettings.number,
-});
+    form: schemaSettings.string,
+    maxPower: schemaSettings.string,
+    efficiency: schemaSettings.string,
+    effiClass: schemaSettings.string,
+    shockResistance: schemaSettings.string,
+    cableManagement: schemaSettings.string,
+    recommended: schemaSettings.string,
+    info: schemaSettings.string,
+},
+{ versionKey: false });
 export const powerModel = mongoose.model('powerAdapter', powerAdapterSchema);

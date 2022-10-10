@@ -1,48 +1,60 @@
+import mongoose from 'mongoose';
 import { caseModel } from '../schemas/article/components/caseSchema.js';
 import { cpuModel } from '../schemas/article/components/cpuSchema.js';
-import { gpuModel } from '../schemas/article/components/gpuSchema.js';
-import { mainboardModel } from '../schemas/article/components/mainboardSchema.js';
-import { powerModel } from '../schemas/article/components/powerAdapterSchema.js';
-import { ramModel } from '../schemas/article/components/ramSchema.js';
-import { soundCardModel } from '../schemas/article/components/soundCardSchema.js';
-import { storageModel } from '../schemas/article/components/storageSchema.js';
-import { caseCreator, cpuCreator } from './objectCreator.js';
+import { loadDataFromDB } from './loadDatafromDB.js';
+import {
+    caseCreator,
+    cpuCreator,
+    gpuCreator,
+    mainboardCreator,
+    powerCreator,
+    ramCreator,
+    soundCreator,
+    storageCreator,
+} from './objectCreator.js';
 
 // handle different operations to different Collections
-export const mongoCollectionInstance = (data, cat) => {
+export const mongoCollectionInstance = (data, cat, reason) => {
+    console.log(cat);
     switch (cat) {
         case 'case':
-            console.log(caseCreator(data, cat))
-            //caseModel(caseObj).save();
+            reason === 'upload' && caseCreator(data, cat);
+            reason === 'load' && loadDataFromDB(cat);
             break;
 
         case 'cpu':
-            console.log(cpuCreator(data, cat))
-            //cpuModel().save();
+            reason === 'upload' && cpuCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         case 'gpu':
-            gpuModel().save();
+            reason === 'upload' && gpuCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         case 'mainboard':
-            mainboardModel().save();
+            reason === 'upload' && mainboardCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
-        case 'power':
-            powerModel().save();
+        case 'powerAdapter':
+            reason === 'upload' && powerCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         case 'ram':
-            ramModel().save();
+            reason === 'upload' && ramCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
-        case 'sound':
-            soundCardModel().save();
+        case 'soundCard':
+            reason === 'upload' && soundCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         case 'storage':
-            storageModel().save();
+            reason === 'upload' && storageCreator(data, cat);
+            reason === 'load' && loadData(cat);
             break;
 
         default:
