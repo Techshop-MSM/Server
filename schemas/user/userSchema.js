@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema({
         sepa: schemaSettings.bool,
     },
     company: {
-        name: schemaSettings.reqString,
+        name: schemaSettings.string,
         form: schemaSettings.string,
         hra: schemaSettings.number,
         tax: schemaSettings.number,

@@ -3,11 +3,10 @@ import { schemaSettings } from '../article/basicData&Settings/schemaSettings.js'
 
 export const companySchema = mongoose.Schema(
     {
+        name: schemaSettings.reqString,
         mail: schemaSettings.reqString,
         sex: schemaSettings.string,
-        username: schemaSettings.reqString,
-        password: schemaSettings.reqString,
-        name: schemaSettings.reqString,
+        contact: schemaSettings.reqString,
         group: schemaSettings.reqString,
         street: schemaSettings.string,
         nr: schemaSettings.number,
@@ -22,4 +21,4 @@ export const companySchema = mongoose.Schema(
     }
 );
 
-export const CompanyDataModel = mongoose.model('companys', companySchema);
+export const CompanyDataModel = mongoose.model('supplies', companySchema);

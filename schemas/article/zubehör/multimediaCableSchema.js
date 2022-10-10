@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { basicArticleData } from '../basicData&Settings/basicArticleData.js';
 import { schemaSettings } from '../basicData&Settings/schemaSettings.js';
 
-export const multimediaCableSchema = mongoose.Schema({
+export const mediaCableSchema = mongoose.Schema({
     baseData: basicArticleData,
     length: schemaSettings.number,
     color: schemaSettings.string,
@@ -13,7 +13,7 @@ export const multimediaCableSchema = mongoose.Schema({
     transmissionSpeed: schemaSettings.string,
     supportedResolution: schemaSettings.array,
 });
-export const ArticleMultimediaCableModel = mongoose.model(
-    'multimediaCableCol',
+export const mediaCableModel = mongoose.model(
+    'mediaCable',
     multimediaCableSchema
 );

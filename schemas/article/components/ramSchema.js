@@ -4,18 +4,15 @@ import { schemaSettings } from '../basicData&Settings/schemaSettings.js';
 
 export const ramSchema = mongoose.Schema({
     baseData: basicArticleData,
-    serie: schemaSettings.string,
-    modell: schemaSettings.string,
-    family: schemaSettings.string,
-    color: schemaSettings.string,
     form: schemaSettings.string,
-    Kapazität: schemaSettings.string,
-    pieces: schemaSettings.number,
-    physicRate: schemaSettings.number,
-    pins: schemaSettings.number,
-    voltage: schemaSettings.number,
-    timings: schemaSettings.string,
-    feature: schemaSettings.string,
+    capacity: schemaSettings.string,
+    modules: schemaSettings.string,
+    physicRate: schemaSettings.string,
+    firstLatency: schemaSettings.string,
+    color: schemaSettings.string,
+    pricePerGB: schemaSettings.string,
+    recommended: schemaSettings.string,
     info: schemaSettings.string,
-});
-export const ArticleRamModel = mongoose.model('ramCol', ramSchema);
+},
+{ versionKey: false });
+export const ramModel = mongoose.model('ram', ramSchema);
