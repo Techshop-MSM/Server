@@ -14,5 +14,6 @@ export const cpuSchema = mongoose.Schema({
     onboardGPU: schemaSettings.string,
     tdp: schemaSettings.string,
     info: schemaSettings.string,
-});
+},
+{ versionKey: false });
 export const cpuModel = mongoose.model('cpu', cpuSchema);

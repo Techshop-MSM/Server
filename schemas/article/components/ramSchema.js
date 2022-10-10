@@ -13,5 +13,6 @@ export const ramSchema = mongoose.Schema({
     pricePerGB: schemaSettings.string,
     recommended: schemaSettings.string,
     info: schemaSettings.string,
-});
+},
+{ versionKey: false });
 export const ramModel = mongoose.model('ram', ramSchema);

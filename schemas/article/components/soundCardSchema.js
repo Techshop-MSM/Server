@@ -13,5 +13,6 @@ export const soundCardSchema = mongoose.Schema({
     powerConnection: schemaSettings.string,
     recommended: schemaSettings.string,
     info: schemaSettings.string,
-});
+},
+{ versionKey: false });
 export const soundCardModel = mongoose.model('soundCard', soundCardSchema);

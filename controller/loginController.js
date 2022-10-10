@@ -5,20 +5,22 @@ import { CompanyDataModel } from '../schemas/company/companySchema.js';
 
 export const loginController = async (req, res) => {
     console.log('Login process started... ');
-    let userFromDB = {}
+    let userFromDB = {};
 
     //Find: userData in userDB
-    console.log("kommt an", req.body.identifier)
+    console.log('kommt an', req.body.identifier);
     userFromDB = await UserDataModel.findOne({
         $or: [{ username: req.body.identifier }, { mail: req.body.identifier }],
     });
 
-    if(!userFromDB){
-        
+    if (!userFromDB) {
         userFromDB = await UserDataModel.findOne({
-            $or: [{ contact: req.body.identifier }, { mail: req.body.identifier }],
+            $or: [
+                { contact: req.body.identifier },
+                { mail: req.body.identifier },
+            ],
         });
-        console.log("CompanyUser:", userFromDB)
+        console.log('CompanyUser:', userFromDB);
     }
 
     try {
@@ -30,31 +32,33 @@ export const loginController = async (req, res) => {
 
         if (isLogedIn === false) return;
 
-        let userData = {}
-        if(userFromDB.group === 'private'){
+        let userData = {};
+        if (userFromDB.group === 'private') {
             userData = {
                 userID: userFromDB._id,
                 username: userFromDB.username,
                 sex: userFromDB.sex,
                 group: userFromDB.group,
-            }
-        }else if(userFromDB.group === 'company'){
+            };
+        } else if (userFromDB.group === 'company') {
             userData = {
                 userID: userFromDB._id,
                 username: userFromDB.username,
                 sex: userFromDB.sex,
                 company: userFromDB.name,
                 group: userFromDB.group,
-            }
-        }else if(userFromDB.group === 'admin'){
+            };
+        } else if (
+            userFromDB.group === 'support' ||
+            userFromDB.group === 'admin'
+        ) {
             userData = {
                 userID: userFromDB._id,
                 username: userFromDB.username,
-                sex: userFromDB.sex,
                 group: userFromDB.group,
-            }
+            };
         }
-        console.log("userFromDB", userFromDB, "userDataTofrontend", userData)
+        console.log('userFromDB', userFromDB, 'userDataTofrontend', userData);
         const generateToken = createAccessToken(userData);
         //console.log(generateToken)
         // Send Data to Frontend

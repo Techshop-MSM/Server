@@ -12,5 +12,6 @@ export const powerAdapterSchema = mongoose.Schema({
     cableManagement: schemaSettings.string,
     recommended: schemaSettings.string,
     info: schemaSettings.string,
-});
+},
+{ versionKey: false });
 export const powerModel = mongoose.model('powerAdapter', powerAdapterSchema);

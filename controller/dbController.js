@@ -6,6 +6,8 @@ export const dbController = async (req, res) => {
     const group = req.body.group;
     const data = req.body.data;
     const cat = req.body.category;
+    
+    console.log(reason, cat, group, data)
 
     // group === 'admin' && switch (reason) {
     switch (reason) {

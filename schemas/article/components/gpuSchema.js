@@ -14,5 +14,6 @@ export const gpuSchema = mongoose.Schema({
     memory: schemaSettings.string,
     recommended: schemaSettings.string,
     info: schemaSettings.string,
-});
+},
+{ versionKey: false });
 export const gpuModel = mongoose.model('gpu', gpuSchema);

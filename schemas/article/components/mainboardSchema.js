@@ -13,5 +13,6 @@ export const mainboardSchema = mongoose.Schema({
     supportedRamTypes: schemaSettings.array,
     recommended: schemaSettings.string,
     info: schemaSettings.string,
-});
+},
+{ versionKey: false });
 export const mainboardModel = mongoose.model('mainboard', mainboardSchema);
